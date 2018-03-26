@@ -42,8 +42,15 @@ View::composer(['admin.crud.adminhome'], function($view){
 
 View::composer(['admin.crud.share'], function($view){
 	 $users = DB::table('users')->get();
-	 $view->with('users',$users);
+	 $division = DB::table('users')->distinct('division')->get(['division']);
+	 
+	 $view->with('users',$users)
+	      ->with('division',$division);
+
+	 
+	
 });
+
 
 Route::get('crud/search', 'CrudController@scopeSearch');
 
