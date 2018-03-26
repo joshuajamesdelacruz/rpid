@@ -2,14 +2,15 @@
 @section('content')
 	
 <div class="col-sm-3">
-<form>
+<form action='{{ route( 'CrudController@shareupdate',$id ) }}'>
 
 <div id="test">
-      <input type="radio" name="category" value="1" />Person
-      <input type="radio" name="category" value="2" />Division
+      <input type="radio" name="category" value="Person" />Person
+      <input type="radio" name="category" value="Division" />Division
 </div>
 <div id="selectList"></div>
 
+<input type='submit' value='submit'>
 </form>
 </div>
 
@@ -18,7 +19,7 @@
 
 	$('#test input:radio').on ('change', function(){
         var selectedVal = $("#test input:radio:checked").val();
-        if(1 == selectedVal){
+        if("Person" == selectedVal){
             var foodList = 
             '<select name="user">'+
             '@foreach($users as $key)'+
@@ -27,7 +28,7 @@
             '</select>';
             $('select').remove();
             $('#selectList').append(foodList);
-        }else if(2 == selectedVal){
+        }else if("Division" == selectedVal){
             var countryList = 
             
             '<select name="country">'+

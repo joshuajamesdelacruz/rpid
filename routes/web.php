@@ -47,8 +47,6 @@ View::composer(['admin.crud.share'], function($view){
 	 $view->with('users',$users)
 	      ->with('division',$division);
 
-	 
-	
 });
 
 
@@ -65,7 +63,7 @@ Route::get('crud/search', 'CrudController@scopeSearch');
 		Route::view('adminhome','admin.crud.adminhome');
 
 		Route::get('share/{id}','CrudController@share');
-
+		Route::post('share/{id}/done','CrudController@shareupdate');
 	});
 
 

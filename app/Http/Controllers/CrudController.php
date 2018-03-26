@@ -195,11 +195,11 @@ class CRUDController extends Controller
 
     }
 
-    public function shareupdate(Request $request,$id){
+    public function shareupdate(Request $request,$id){          
+    
+        $name = $request->name;
 
-      /* loop if division */
-
-
+      return view('admin.crud.index');
 
     }
 
