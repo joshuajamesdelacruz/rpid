@@ -2,7 +2,9 @@
 @section('content')
 	
 <div class="col-sm-3">
-<form action='{{ route( 'CrudController@shareupdate',$id ) }}'>
+<form method='post' action="{{ action( 'CrudController@shareupdate' ,$id ) }}">
+
+{{ csrf_field() }}
 
 <div id="test">
       <input type="radio" name="category" value="Person" />Person
@@ -21,7 +23,7 @@
         var selectedVal = $("#test input:radio:checked").val();
         if("Person" == selectedVal){
             var foodList = 
-            '<select name="user">'+
+            '<select name="Person">'+
             '@foreach($users as $key)'+
             '<option>{{ $key->name }}</option>'+
             '@endforeach'+
@@ -31,7 +33,7 @@
         }else if("Division" == selectedVal){
             var countryList = 
             
-            '<select name="country">'+
+            '<select name="Division">'+
             '@foreach($division as $key)'+
             '<option>{{ $key->division }}</option>'+
             '@endforeach';

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Crud;
 
@@ -196,10 +197,17 @@ class CRUDController extends Controller
     }
 
     public function shareupdate(Request $request,$id){          
-    
-        $name = $request->name;
+        
+         $share = Crud::find($id);
 
-      return view('admin.crud.index');
+        if($request->category == "Person"){
+           echo $request->Person;
+        }if($request->category == "Division"){
+           echo $request->Division;
+        }
+        
+
+       return redirect('adminhome');
 
     }
 
