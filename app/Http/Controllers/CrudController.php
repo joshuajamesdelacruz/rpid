@@ -239,14 +239,18 @@ class CRUDController extends Controller
     }if($request->category == "Division"){
 
         $cruds = DB::table('cruds')->where('id', $id)->get();
-        $user_id = $request->Division;
-        $users = DB::table('users')->where('division', $user_id)->get();
 
-         $users->division;
+        $user_name = $request->Division;
+
+        $users = DB::table('users')->where('division' ,$user_name)->get();
+
+        foreach($users as $key){
+           echo $key->name;
+        }
         
 
 
-        //  return redirect('adminhome')->withSuccess('Shared to '. $request->Division .' Division!');
+        //   return redirect('adminhome')->withSuccess('Shared to '. $request->Division .' Division!');
         }
          
     }
