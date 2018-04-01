@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Support\Facades\DB;
 use App\Crud;
 
 
@@ -196,19 +196,59 @@ class CRUDController extends Controller
 
     }
 
-    public function shareupdate(Request $request,$id){          
-        
-         $share = Crud::find($id);
+    public function shareupdate(Request $request,$id){             
 
         if($request->category == "Person"){
-           echo $request->Person;
-        }if($request->category == "Division"){
-           echo $request->Division;
-        }
+        //get 2 [users/cruds] tables in the sharing and person to function name, division and the files    
+        $cruds = DB::table('cruds')->where('id', $id)->first();
+    
+        $user_id = $request->Person;
+        $users = DB::table('users')->where('id', $user_id)->first();
+       
+        $user_id = $users->id;
+        $user_name = $users->name;
+
+        $cruds_id = $cruds->id;
+        $cruds_owner = $cruds->document_owner;
+        $cruds_division = $cruds->division;
+        $cruds_document = $cruds->document;
+        $cruds_year_release = $cruds->year_release;
+        $cruds_sharetoken = $cruds->sharetoken;
+        $cruds_privacy = $cruds->privacy;
+        $cruds_item_code = $cruds->item_code;
+        $cruds_file = $cruds->file;
+        $cruds_created_at = $cruds->created_at;
+        $cruds_updated_at = $cruds->updated_at;
+
+            DB::table('cruds')->insert([
+            'division'         => $cruds_division, 
+            'document'         => $cruds_document,
+            'year_release'     => $cruds_year_release,
+            'item_code'        => $cruds_item_code,
+            'file'             => $cruds_file,
+            'user_id'          => $user_id,     //share to this user
+            'sharetoken'       => $cruds_sharetoken,
+            'privacy'          => $cruds_privacy,
+            'document_owner'   => $cruds_owner,   //user who owns the file
+            'created_at'       => $cruds_created_at,
+            'updated_at'       => $cruds_updated_at
+            ]);
+                 
+        return redirect('adminhome')->withSuccess('Shared to ' . $user_name);
+       
+    }if($request->category == "Division"){
+
+        $cruds = DB::table('cruds')->where('id', $id)->get();
+        $user_id = $request->Division;
+        $users = DB::table('users')->where('division', $user_id)->get();
+
+         $users->division;
         
 
-       return redirect('adminhome');
 
+        //  return redirect('adminhome')->withSuccess('Shared to '. $request->Division .' Division!');
+        }
+         
     }
 
   

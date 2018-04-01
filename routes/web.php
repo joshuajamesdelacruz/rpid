@@ -17,6 +17,7 @@ Route::get('/home', 'HomeController@index');
 /* PRIVATE */
 View::composer(['admin.crud.adminhome'], function($view){
 	$cruds_private = Crud::where('privacy', 1)
+	                     ->where('user_id','=', Auth::id() )
 						 ->where('document_owner', Auth::id() )
 						 ->Paginate(50);
 						

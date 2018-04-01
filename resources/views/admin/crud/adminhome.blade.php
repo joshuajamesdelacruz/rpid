@@ -19,6 +19,11 @@
   </div>
 
 </form> --}}
+@if ( session('success') )
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <div class="container"><h2>My Dashboard</h2></div>
       
