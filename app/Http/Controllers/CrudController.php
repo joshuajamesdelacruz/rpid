@@ -199,11 +199,11 @@ class CRUDController extends Controller
     public function shareupdate(Request $request,$id){             
 
         if($request->category == "Person"){
-        //get 2 [users/cruds] tables in the sharing and person to function name, division and the files    
+    //get 2 [users/cruds] tables in the sharing and person to function name, division and the files    
         $cruds = DB::table('cruds')->where('id', $id)->first();
     
-        $user_id = $request->Person;
-        $users = DB::table('users')->where('id', $user_id)->first();
+        $user = $request->Person;
+        $users = DB::table('users')->where('id', $user)->first();
        
         $user_id = $users->id;
         $user_name = $users->name;
@@ -238,15 +238,74 @@ class CRUDController extends Controller
        
     }if($request->category == "Division"){
 
+        $cruds_initials = DB::table('cruds')->where('id',$id)->first();
         $cruds = DB::table('cruds')->where('id', $id)->get();
-
         $user_name = $request->Division;
-
         $users = DB::table('users')->where('division' ,$user_name)->get();
+       
+        $cruds_initials->document;
+        $cruds_initials->year_release;
+        $cruds_initials->item_code;
+        $cruds_initials->file;
+        $cruds_initials->user_id;
+        $cruds_initials->sharetoken;
+        $cruds_initials->privacy;
+        $cruds_initials->document_owner;
+        $cruds_initials->created_at;
+        $cruds_initials->updated_at;
+       
+foreach($users as $key){
+    foreach($cruds as $cey){
+ 
+      
 
-        foreach($users as $key){
-           echo $key->name;
-        }
+        $user_id = $key->id;
+        $cruds_id = $key->id;
+        $cruds_owner = $cey->document_owner;
+        $cruds_division = $cey->division;
+        $cruds_document = $cey->document;
+        $cruds_year_release = $cey->year_release;
+        $cruds_sharetoken = $cey->sharetoken;
+        $cruds_privacy = $cey->privacy;
+        $cruds_item_code = $cey->item_code;
+        $cruds_file = $cey->file;
+        $cruds_created_at = $cey->created_at;
+        $cruds_updated_at = $cey->updated_at;
+
+       if(Auth::id() == $user_id){
+            echo "don't insert my id <br>";
+            continue;
+          
+       }else{  
+                if($user_id <>  $cruds_owner ){
+                    $result=DB::table('cruds')->insert([
+
+                    'division'         => $cruds_division, 
+                    'document'         => $cruds_document,
+                    'year_release'     => $cruds_year_release,
+                    'item_code'        => $cruds_item_code,
+                    'file'             => $cruds_file,
+                    'user_id'          => $user_id,     //share to this user
+                    'sharetoken'       => $cruds_sharetoken,
+                    'privacy'          => $cruds_privacy,
+                    'document_owner'   => $cruds_owner,   //user who owns the file
+                    'created_at'       => $cruds_created_at,
+                    'updated_at'       => $cruds_updated_at
+
+                    ]);
+                    continue;
+
+                }else{
+                    echo "<hr>not insert";
+                } 
+            }
+            continue;
+         
+}
+}
+         
+
+
         
 
 
