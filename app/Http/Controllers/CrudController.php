@@ -256,7 +256,7 @@ class CRUDController extends Controller
         $cruds = DB::table('cruds')->where('id', $id)->get();
         $user_name = $request->Division;
         $users = DB::table('users')->where('division' ,$user_name)->get();
-        $user_not_equal = DB::table('cruds')->where('user_id','!=','document_owner')->count();
+        $user_not_equal = DB::table('cruds')->where('user_id','!=','document_owner')->get();
         
         //looping through database that has users + cruds database
 foreach($users as $key){
@@ -283,7 +283,9 @@ foreach($users as $key){
             continue;          
        }else{ 
                 //if there is no data insert
-         if($user_not_equal ==  0){
+                
+         if($user_not_equal->count()-1 ==  0){
+             echo 'true';
                     $result=DB::table('cruds')->insert([
                     'division'         => $cruds_division, 
                     'document'         => $cruds_document,
@@ -301,7 +303,7 @@ foreach($users as $key){
                     continue;
                     
                 }else{
-                    echo "<hr>not insert" ;
+                    echo "false" ;
                   
                 } 
             }
