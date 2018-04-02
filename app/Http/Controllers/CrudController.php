@@ -236,12 +236,10 @@ class CRUDController extends Controller
                  
         return redirect('adminhome')->withSuccess('Shared to ' . $user_name);
        
-    }if($request->category == "Division"){
+    }if($request->category == "Division"){  
 
+        //getting the initial request 
         $cruds_initials = DB::table('cruds')->where('id',$id)->first();
-        $cruds = DB::table('cruds')->where('id', $id)->get();
-        $user_name = $request->Division;
-        $users = DB::table('users')->where('division' ,$user_name)->get();
        
         $cruds_initials->document;
         $cruds_initials->year_release;
@@ -253,12 +251,18 @@ class CRUDController extends Controller
         $cruds_initials->document_owner;
         $cruds_initials->created_at;
         $cruds_initials->updated_at;
-       
+
+        //checking the tables if the initial request has values
+        $cruds = DB::table('cruds')->where('id', $id)->get();
+        $user_name = $request->Division;
+        $users = DB::table('users')->where('division' ,$user_name)->get();
+        $user_not_equal = DB::table('cruds')->where('user_id','!=','document_owner')->count();
+        
+        //looping through database that has users + cruds database
 foreach($users as $key){
     foreach($cruds as $cey){
  
-      
-
+   
         $user_id = $key->id;
         $cruds_id = $key->id;
         $cruds_owner = $cey->document_owner;
@@ -272,14 +276,15 @@ foreach($users as $key){
         $cruds_created_at = $cey->created_at;
         $cruds_updated_at = $cey->updated_at;
 
-       if(Auth::id() == $user_id){
-            echo "don't insert my id <br>";
-            continue;
-          
-       }else{  
-                if($user_id <>  $cruds_owner ){
-                    $result=DB::table('cruds')->insert([
+ if($users->count() >= 0 ){ 
 
+    if(Auth::id() == $user_id){
+            echo "don't insert my id <br>";
+            continue;          
+       }else{ 
+                //if there is no data insert
+         if($user_not_equal ==  0){
+                    $result=DB::table('cruds')->insert([
                     'division'         => $cruds_division, 
                     'document'         => $cruds_document,
                     'year_release'     => $cruds_year_release,
@@ -294,15 +299,24 @@ foreach($users as $key){
 
                     ]);
                     continue;
-
+                    
                 }else{
-                    echo "<hr>not insert";
+                    echo "<hr>not insert" ;
+                  
                 } 
             }
             continue;
-         
-}
-}
+ }else{
+   echo  'no data found';
+ }
+}}
+
+    // 1 do not add the users that will share the file
+        
+   // 2 to add the users who dont have the files 
+   // 3 do not add the users who already have the files
+        
+
          
 
 
