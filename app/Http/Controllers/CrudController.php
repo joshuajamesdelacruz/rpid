@@ -237,7 +237,7 @@ class CRUDController extends Controller
         return redirect('adminhome')->withSuccess('Shared to ' . $user_name);
        
     }if($request->category == "Division"){  
-
+        $user_name = $request->Division;
         //getting the initial request 
         $cruds_initials = DB::table('cruds')->where('id',$id)->first();
        
@@ -254,14 +254,18 @@ class CRUDController extends Controller
 
         //checking the tables if the initial request has values
         $cruds = DB::table('cruds')->where('id', $id)->get();
-        $user_name = $request->Division;
+        $sharetoken = DB::table('cruds')->where('id', $id)->first();  
+       
         $users = DB::table('users')->where('division' ,$user_name)->get();
-        $user_not_equal = DB::table('cruds')->where('user_id','!=','document_owner')->get();
-        
+        $user_not_equal = DB::table('cruds')
+                          ->where('user_id','!=','document_owner')
+                          ->where('sharetoken','=',  $sharetoken->sharetoken )
+                          ->get();
+                          
+    // dd($sharetoken);
         //looping through database that has users + cruds database
 foreach($users as $key){
     foreach($cruds as $cey){
- 
    
         $user_id = $key->id;
         $cruds_id = $key->id;
@@ -277,14 +281,17 @@ foreach($users as $key){
         $cruds_updated_at = $cey->updated_at;
 
  if($users->count() >= 0 ){ 
-
+     // 1 do not add the users that will share the file
     if(Auth::id() == $user_id){
             echo "don't insert my id <br>";
             continue;          
        }else{ 
                 //if there is no data insert
-                
-         if($user_not_equal->count()-1 ==  0){
+               
+        
+   // 2 to add the users who dont have the files 
+   // 3 do not add the users who already have the files
+         if($user_not_equal->count() - 1 ==  0){
              echo 'true';
                     $result=DB::table('cruds')->insert([
                     'division'         => $cruds_division, 
@@ -313,10 +320,7 @@ foreach($users as $key){
  }
 }}
 
-    // 1 do not add the users that will share the file
-        
-   // 2 to add the users who dont have the files 
-   // 3 do not add the users who already have the files
+    
         
 
          
