@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Crud;
-
+use App\Users;
 
 class CRUDController extends Controller
 {
@@ -198,6 +198,7 @@ class CRUDController extends Controller
 
     public function shareupdate(Request $request,$id){             
 
+
         if($request->category == "Person"){
     //get 2 [users/cruds] tables in the sharing and person to function name, division and the files    
         $cruds = DB::table('cruds')->where('id', $id)->first();
@@ -237,99 +238,29 @@ class CRUDController extends Controller
         return redirect('adminhome')->withSuccess('Shared to ' . $user_name);
        
     }if($request->category == "Division"){  
-        $user_name = $request->Division;
-        //getting the initial request 
-        $cruds_initials = DB::table('cruds')->where('id',$id)->first();
+        $user_division = $request->Division;
+
+         $cruds = DB::table('cruds')->where('id', $id)->first();
+         $users = DB::table('users')->where('division', $request->Division)->distinct()->get();
+         echo
+         $cruds->file;
+
+         foreach ($users as $key => $value) {
+
+                $crappy = Crud::firstOrCreate(array(
+                    'user_id' => $value->id, 
+                    'division' => $value->division, 
+                    'document' => $cruds->document,
+                    'year_release' => $cruds->year_release,
+                    'item_code' => $cruds->item_code,
+                    'file' => $cruds->file,
+                    'sharetoken'=> $cruds->sharetoken,
+                    'privacy' => $cruds->privacy,
+                    'document_owner' => $cruds->document_owner  
+                ));
        
-        $cruds_initials->document;
-        $cruds_initials->year_release;
-        $cruds_initials->item_code;
-        $cruds_initials->file;
-        $cruds_initials->user_id;
-        $cruds_initials->sharetoken;
-        $cruds_initials->privacy;
-        $cruds_initials->document_owner;
-        $cruds_initials->created_at;
-        $cruds_initials->updated_at;
-
-        //checking the tables if the initial request has values
-        $cruds = DB::table('cruds')->where('id', $id)->get();
-        $sharetoken = DB::table('cruds')->where('id', $id)->first();  
-       
-        $users = DB::table('users')->where('division' ,$user_name)->get();
-        $user_not_equal = DB::table('cruds')
-                          ->where('user_id','!=','document_owner')
-                          ->where('sharetoken','=',  $sharetoken->sharetoken )
-                          ->get();
-                          
-    // dd($sharetoken);
-        //looping through database that has users + cruds database
-foreach($users as $key){
-    foreach($cruds as $cey){
-   
-        $user_id = $key->id;
-        $cruds_id = $key->id;
-        $cruds_owner = $cey->document_owner;
-        $cruds_division = $cey->division;
-        $cruds_document = $cey->document;
-        $cruds_year_release = $cey->year_release;
-        $cruds_sharetoken = $cey->sharetoken;
-        $cruds_privacy = $cey->privacy;
-        $cruds_item_code = $cey->item_code;
-        $cruds_file = $cey->file;
-        $cruds_created_at = $cey->created_at;
-        $cruds_updated_at = $cey->updated_at;
-
- if($users->count() >= 0 ){ 
-     // 1 do not add the users that will share the file
-    if(Auth::id() == $user_id){
-            echo "don't insert my id <br>";
-            continue;          
-       }else{ 
-                //if there is no data insert
-               
-        
-   // 2 to add the users who dont have the files 
-   // 3 do not add the users who already have the files
-         if($user_not_equal->count() - 1 ==  0){
-             echo 'true';
-                    $result=DB::table('cruds')->insert([
-                    'division'         => $cruds_division, 
-                    'document'         => $cruds_document,
-                    'year_release'     => $cruds_year_release,
-                    'item_code'        => $cruds_item_code,
-                    'file'             => $cruds_file,
-                    'user_id'          => $user_id,     //share to this user
-                    'sharetoken'       => $cruds_sharetoken,
-                    'privacy'          => $cruds_privacy,
-                    'document_owner'   => $cruds_owner,   //user who owns the file
-                    'created_at'       => $cruds_created_at,
-                    'updated_at'       => $cruds_updated_at
-
-                    ]);
-                    continue;
-                    
-                }else{
-                    echo "false" ;
-                  
-                } 
-            }
-            continue;
- }else{
-   echo  'no data found';
- }
-}}
-
-    
-        
-
-         
-
-
-        
-
-
-        //   return redirect('adminhome')->withSuccess('Shared to '. $request->Division .' Division!');
+         }
+          return redirect('adminhome')->withSuccess('Shared to '. $request->Division .' Division!');
         }
          
     }
