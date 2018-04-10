@@ -202,7 +202,6 @@ class CRUDController extends Controller
         if($request->category == "Person"){
     //get 2 [users/cruds] tables in the sharing and person to function name, division and the files    
         $cruds = DB::table('cruds')->where('id', $id)->first();
-    
         $user = $request->Person;
         $users = DB::table('users')->where('id', $user)->first();
        
@@ -221,7 +220,8 @@ class CRUDController extends Controller
         $cruds_created_at = $cruds->created_at;
         $cruds_updated_at = $cruds->updated_at;
 
-            DB::table('cruds')->insert([
+      
+            Crud::firstOrCreate(array(
             'division'         => $cruds_division, 
             'document'         => $cruds_document,
             'year_release'     => $cruds_year_release,
@@ -231,9 +231,7 @@ class CRUDController extends Controller
             'sharetoken'       => $cruds_sharetoken,
             'privacy'          => $cruds_privacy,
             'document_owner'   => $cruds_owner,   //user who owns the file
-            'created_at'       => $cruds_created_at,
-            'updated_at'       => $cruds_updated_at
-            ]);
+             ));
                  
         return redirect('adminhome')->withSuccess('Shared to ' . $user_name);
        
@@ -242,8 +240,7 @@ class CRUDController extends Controller
 
          $cruds = DB::table('cruds')->where('id', $id)->first();
          $users = DB::table('users')->where('division', $request->Division)->distinct()->get();
-         echo
-         $cruds->file;
+        
 
          foreach ($users as $key => $value) {
 

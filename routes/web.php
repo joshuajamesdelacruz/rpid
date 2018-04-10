@@ -3,19 +3,15 @@ use Illuminate\Support\Facades\Input;
 use App\Crud;
 
 Auth::routes();
-// Route::auth();
+Route::auth();
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
-// Route::get('/', function(){
-// 		return view('home');
-// });
-
 //View composer - this method can send all the data from the database to any VIEW
 
 /* PRIVATE */
-View::composer(['admin.crud.adminhome'], function($view){
+View::composer(['admin.crud.adminhome','user.crud.userhome'], function($view){
 	$cruds_private = Crud::where('privacy', 1)
 	                     ->where('user_id','=', Auth::id() )
 						 ->where('document_owner', Auth::id() )
@@ -24,7 +20,7 @@ View::composer(['admin.crud.adminhome'], function($view){
 	$view->with('cruds_private',$cruds_private);
 });
 /* PUBLIC */
-View::composer(['admin.crud.adminhome'], function($view){
+View::composer(['admin.crud.adminhome','user.crud.userhome'], function($view){
 	$cruds_public = Crud::where('privacy', 0)
 						->where('document_owner', Auth::id() )
 						->Paginate(50);
@@ -32,7 +28,7 @@ View::composer(['admin.crud.adminhome'], function($view){
 });
 
 /* SHARE */
-View::composer(['admin.crud.adminhome'], function($view){
+View::composer(['admin.crud.adminhome','user.crud.userhome'], function($view){
 	$cruds_shared = Crud::where('privacy', 1)
 						->where('user_id', Auth::id() )
 						->where('document_owner', '!=' , Auth::id() )
@@ -81,7 +77,12 @@ Route::get('crud/search', 'CrudController@scopeSearch');
 //Create the user pages
 
 	Route::group(['middleware' => ['roles:user']], function () {
-		Route::get('userhome','UserController@index');
+
+		Route::view('userhome','user.crud.userhome');
+		Route::get('index','UserController@index');
+		// Route::view('userhome','admin.crud.userhome');
+
+		
 		Route::resource('user','UserController'); 
 
 	});

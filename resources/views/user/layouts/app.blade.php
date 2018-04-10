@@ -22,9 +22,10 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    
                     <ul class="nav navbar-nav">
                         
-                       <li><a class="nav-link" href=" {{url('userhome')}} ">Crud</a></li>
+                       <li><a class="nav-link" href=" {{url('index')}} ">Public Document</a></li>
                        
                     </ul>
 
