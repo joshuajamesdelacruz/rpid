@@ -11,7 +11,7 @@ Route::get('/home', 'HomeController@index');
 //View composer - this method can send all the data from the database to any VIEW
 
 /* PRIVATE */
-View::composer(['admin.crud.adminhome','user.crud.userhome'], function($view){
+View::composer(['admin.crud.adminhome','user.crud.userhome','manager.crud.managerhome'], function($view){
 	$cruds_private = Crud::where('privacy', 1)
 	                     ->where('user_id','=', Auth::id() )
 						 ->where('document_owner', Auth::id() )
