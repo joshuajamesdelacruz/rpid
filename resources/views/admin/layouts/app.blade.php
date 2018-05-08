@@ -26,7 +26,8 @@
                         
                        <li><a class="nav-link" href=" {{url('crud')}} ">Public Documents</a></li>
                        <li><a class="nav-link" href=" {{url('users')}} ">User</a></li>
-
+                       <li><a class="nav-link" href=" {{url('category')}} ">Category</a></li>
+                    
                     </ul>
 
                     <!-- Right Side Of Navbar -->

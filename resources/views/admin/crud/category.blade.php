@@ -1,7 +1,6 @@
 @extends('admin.crud.master')
 @section('content')
 
+hi
 
-Myaccount
-   
 @endsection

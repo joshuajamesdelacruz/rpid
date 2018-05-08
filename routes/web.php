@@ -20,7 +20,7 @@ View::composer(['admin.crud.adminhome','user.crud.userhome','manager.crud.manage
 	$view->with('cruds_private',$cruds_private);
 });
 /* PUBLIC */
-View::composer(['admin.crud.adminhome','user.crud.userhome'], function($view){
+View::composer(['admin.crud.adminhome','user.crud.userhome','manager.crud.managerhome'], function($view){
 	$cruds_public = Crud::where('privacy', 0)
 						->where('document_owner', Auth::id() )
 						->Paginate(50);
@@ -28,7 +28,7 @@ View::composer(['admin.crud.adminhome','user.crud.userhome'], function($view){
 });
 
 /* SHARE */
-View::composer(['admin.crud.adminhome','user.crud.userhome'], function($view){
+View::composer(['admin.crud.adminhome','user.crud.userhome','manager.crud.managerhome'], function($view){
 	$cruds_shared = Crud::where('privacy', 1)
 						->where('user_id', Auth::id() )
 						->where('document_owner', '!=' , Auth::id() )
@@ -58,6 +58,7 @@ Route::get('crud/search', 'CrudController@scopeSearch');
 		Route::view('myaccount','admin.crud.myaccount');
 		Route::view('mydocument','admin.crud.mydocument');
 		Route::view('adminhome','admin.crud.adminhome');
+		Route::view('category','admin.crud.category');
 
 		Route::get('share/{id}','CrudController@share');
 		Route::post	('share/{id}/done','CrudController@shareupdate');
