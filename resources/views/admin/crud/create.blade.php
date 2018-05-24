@@ -84,6 +84,9 @@
     <div class="form-group row">
       <div class="col-md-2"></div>
       <input type="submit" class="btn btn-primary">
+      <a href="{{ url('adminhome')  }}">
+      <input type="button" value="Cancel" class="btn btn-danger">
+      </a>
     </div>
 
   </form>
