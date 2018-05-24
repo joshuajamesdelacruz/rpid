@@ -10,7 +10,7 @@ class AdminController extends Controller
      public function index()
     {
        $cruds = Crud::all()->toArray();   
-      return view('admin.crud.index', compact('cruds'));
+      return view('admin.crud.index', compact('cruds') );
     }
 
   

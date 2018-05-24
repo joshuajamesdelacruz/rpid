@@ -47,7 +47,7 @@
         
         <th class="text-center">Division</th>
         <th class="text-center">Document</th>
-        <th class="text-center">Year Release</th>
+        <th class="text-center">Fiscal Year</th>
         <th class="text-center">Item Code</th>
  
         <th colspan="4" class="text-center">Actions</th>

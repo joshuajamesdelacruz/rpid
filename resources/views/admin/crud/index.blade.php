@@ -40,7 +40,7 @@
 
       @if(count($cruds) > 0 )
 
-       {{ $cruds->render() }}
+       {{ $crudscruds->render() }}
       
       @foreach($cruds as $key)
   
