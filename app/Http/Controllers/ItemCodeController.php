@@ -40,8 +40,11 @@ class ItemCodeController extends Controller
     }
 
   
-    public function destroy(ItemCode $itemCode)
+    public function destroy($id)
     {
-        //
+       $ItemCode = ItemCode::find($id);
+       $ItemCode->delete();
+
+       return redirect('/category');
     }
 }

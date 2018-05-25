@@ -2,7 +2,7 @@
 @section('content')
 
 
-<form action="">
+<form action="POST" action="" >
     <input type="text">
     <button type="submit">Submit</button>
     <button type="reset" value="reset">Cancel</button>
