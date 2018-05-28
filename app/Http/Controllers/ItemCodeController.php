@@ -20,7 +20,12 @@ class ItemCodeController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $ItemCode = ItemCode::all();
+         $ItemCode = new ItemCode([
+          'category'     => $request->get('category'),
+        ]);
+         $ItemCode->save();
+         return redirect('/category');
     }
 
     public function show(ItemCode $itemCode)
