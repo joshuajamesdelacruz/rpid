@@ -2,7 +2,7 @@
 @extends('admin.crud.master')
 @section('content')
 
-<h3>HA<h3>
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

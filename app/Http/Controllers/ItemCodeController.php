@@ -33,15 +33,22 @@ class ItemCodeController extends Controller
         //
     }
 
-    public function edit(ItemCode $itemCode)
+    public function edit($id)
     {
-        //
+        $ItemCode = ItemCode::find($id);
+        return view('admin.crud.categoryedit', compact('ItemCode','id'));
     }
 
   
-    public function update(Request $request, ItemCode $itemCode)
+    public function update(Request $request, $id)
     {
-        //
+        $ItemCode = ItemCode::find($id);
+
+        $ItemCode->category = $request->get('category');
+
+        $ItemCode->save();
+
+        return redirect('/category'); 
     }
 
   

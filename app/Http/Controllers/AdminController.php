@@ -62,7 +62,7 @@ class AdminController extends Controller
    
     public function edit($id)
     {
-          $admin = admin::find($id);
+         $admin = admin::find($id);
         
         return view('admin.edit', compact('admin','id'));
     }
@@ -71,7 +71,6 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $admin = admin::find($id);
-
 
         echo $admin->division = $request->get('division');
         echo $admin->document = $request->get('document');

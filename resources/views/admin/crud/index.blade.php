@@ -40,7 +40,7 @@
 
       @if(count($cruds) > 0 )
 
-       {{ $crudscruds->render() }}
+       {{ $cruds->render() }}
       
       @foreach($cruds as $key)
   
@@ -50,14 +50,7 @@
         <td>{{ $key['document'] }}</td>
         <td>{{ $key['year_release'] }}</td>
         <td>{{ $key['item_code'] }}</td>
-        <td><a href="{{ Action( 'CrudController@edit',$key['id'] ) }}" class="btn btn-warning">Edit</a> </td>
-        <td>
-          <form action="{{ Action( 'CrudController@destroy',$key['id'] ) }}" method="post">
-            {{csrf_field()}}
-            <input name="_method" type="hidden" value="DELETE">
-            <button class="btn btn-danger" onclick="return confirm('Are you sure you want to commit delete and go back?')" type="submit">Delete</button>
-          </form>
-        </td>
+       
             
         
          <td>
