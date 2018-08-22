@@ -57,7 +57,13 @@
     <div class="form-group row">
       <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Unique Item Code</label>
       <div class="col-sm-3">
-       <input type="text" class="form-control form-control-lg" name="item_code" value={{old('item_code')}} >
+       <select class="form-control form-control-lg" name="item_code" value={{old('item_code')}} >
+              
+        @foreach ($errors->all() as $error)
+                 <option>  </option>
+        @endforeach
+      
+      </select>
       </div>
     </div>
 

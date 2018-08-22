@@ -57,26 +57,6 @@ class CrudUserController extends Controller
         $user->roles()->attach( Role::where('name', $request['role'])->first() );
 
 
-
-         // DB::table('users')->insert([
-
-         //    'name' => $request->get('name'),
-         //    'email' => $request->get('email'), 
-         //    'password' => $request->get('password'),
-         //    'division' => $request->get('division')
-
-         //    ]);
-
-         // $users_get = DB::table('users')->count() - 1;
-
-         // DB::table('user_role')->insert([
-            
-         //    'role_id' => $request->get('role'),
-         //    'user_id' => $users_get + 1,
-
-         //    ]);
-
-
         return redirect('/users');
     }
 
@@ -88,15 +68,28 @@ class CrudUserController extends Controller
 
    
     public function edit($id)
-    {
-        //
+    {     
+        $user = User::FindorFail($id);   
+        $roles =  DB::table('roles')
+                  ->get();     
+        return view( 'admin.users.edit', compact('user','id', 'roles') );
+
     }
 
    
-  
     public function update(Request $request, $id)
     {
-        //
+       
+        $user = User::find($id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->division = $request['division']; 
+        $user->save();
+
+        // $user->roles()->detach( Role::where('name', $request['name'] )->first()  );   
+        $user->roles()->attach( Role::where('name', $request['name'] )->first()  );
+        
+        return redirect('/users'); 
     }
 
     

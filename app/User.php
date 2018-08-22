@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-                                              //tablename,foreignkey{this table},foreign key(other table)
+         //tablename,foreignkey{this table},foreign key(other table)
       return $this->belongsToMany('App\Role','user_role','user_id','role_id');
     }
 
