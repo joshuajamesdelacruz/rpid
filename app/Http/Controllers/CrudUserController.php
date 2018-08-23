@@ -19,6 +19,7 @@ class CrudUserController extends Controller
                 ->leftjoin('user_role','users.id','=','user_role.user_id')
                 ->leftjoin('roles','roles.id','=','user_role.role_id')
                 ->select('users.id','users.name as uname' , 'users.email' , 'users.division', 'roles.name as rname')
+                ->Orderby('rname')
                 ->get();
       
         return view('admin.users.index', compact('user'));
@@ -47,17 +48,22 @@ class CrudUserController extends Controller
          ]);
 
        
-
+       
         $user = new User();
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->password =bcrypt($request['password']);
-        $user->division = $request['division'];    
-        $user->save();
-        $user->roles()->attach( Role::where('name', $request['role'])->first() );
-
-
-        return redirect('/users');
+        $user->division = $request['division'];  
+        
+        //Errors
+        if (User::where('email', '=', $request['email'])->exists()) {
+           return back()->withErrors("Username already exist");
+        }else{
+            $user->save();
+            $user->roles()->attach( Role::where('name', $request['role'])->first() );
+            return redirect('/users');
+        }       
+      
     }
 
     
@@ -79,15 +85,20 @@ class CrudUserController extends Controller
    
     public function update(Request $request, $id)
     {
-       
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'division' => 'required',
+            'role' => 'required'
+         ]);
+
         $user = User::find($id);
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->division = $request['division']; 
         $user->save();
-
-        // $user->roles()->detach( Role::where('name', $request['name'] )->first()  );   
-        $user->roles()->attach( Role::where('name', $request['name'] )->first()  );
+  
+        $user->roles()->sync( Role::where('name', $request['role'] )->first()  );
         
         return redirect('/users'); 
     }

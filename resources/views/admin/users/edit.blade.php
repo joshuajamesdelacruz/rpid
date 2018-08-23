@@ -1,6 +1,17 @@
 @extends('admin.crud.master')
 @section('content')
 
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container">
   <form method="POST" action="{{ Action( 'CrudUserController@update', $id ) }}" enctype="multipart/form-data">
     <div class="form-group row">
@@ -19,15 +30,29 @@
 
    <div class="form-group row">
       <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Division</label>
-      <div class="col-sm-3">
-       <input type="text" class="form-control form-control-lg" name="division" value="{{$user->division}}">
-      </div>
+    
+       <div class="col-sm-3">
+          {{-- <input type="text" class="form-control form-control-lg" name="division" > --}}
+           
+       <select class="form-control form-control-lg" name="division">
+             <option></option>
+             <option>ODG</option>
+             <option>Faculty</option>
+             <option>TDD</option>
+             <option>RPID</option>
+             <option>PCD</option>
+             <option>ICT</option>
+             <option>GSD</option>
+           </select>
+
+        </div>
+      
     </div>
 
     <div class="form-group row">
       <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Username</label>
       <div class="col-sm-3">
-       <input type="text" class="form-control form-control-lg" name="email" value="{{$user->email}}">
+       <input readonly="readonly" type="text" class="form-control form-control-lg" name="email" value="{{$user->email}}" >
       </div>
     </div>
 

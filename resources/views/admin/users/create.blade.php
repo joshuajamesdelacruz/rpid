@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Email</label>
+      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Username</label>
       <div class="col-sm-3">
        <input type="text" class="form-control form-control-lg" name="email" >
       </div>
@@ -36,7 +36,7 @@
    <div class="form-group row">
       <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Password</label>
       <div class="col-sm-3">
-       <input type="text" class="form-control form-control-lg" name="password" >
+       <input type="password" class="form-control form-control-lg" name="password" >
       </div>
     </div>
 
