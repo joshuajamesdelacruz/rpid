@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+
 use App\Crud;
 use App\Users;
+use App\ItemCode;
 
 class CRUDController extends Controller
 {
@@ -35,7 +37,9 @@ class CRUDController extends Controller
   
     public function create()
     {
-         return view('admin.crud.create');
+         $itemcode = ItemCode::all();
+         return view('admin.crud.create', compact('itemcode') );
+
     }
 
     
@@ -93,8 +97,8 @@ class CRUDController extends Controller
     public function edit($id)
     {
           $crud = Crud::find($id);
-        
-        return view('admin.crud.edit', compact('crud','id'));
+          $itemcode = ItemCode::all();
+        return view('admin.crud.edit', compact('crud','id','itemcode'));
     }
 
     

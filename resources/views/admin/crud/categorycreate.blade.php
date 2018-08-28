@@ -1,7 +1,7 @@
 @extends('admin.crud.master')
 @section('content')
 
-<h3>Creata</h3>
+<h3>Create</h3>
 <form method="POST" action="{{ url('category') }}" >
          {{ csrf_field() }}
     <input type="text" name="category">

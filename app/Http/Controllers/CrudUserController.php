@@ -78,7 +78,9 @@ class CrudUserController extends Controller
         $user = User::FindorFail($id);   
         $roles =  DB::table('roles')
                   ->get();     
-        return view( 'admin.users.edit', compact('user','id', 'roles') );
+      
+
+        return view( 'admin.users.edit', compact('user','id', 'roles','itemcode' ) );
 
     }
 

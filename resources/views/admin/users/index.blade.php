@@ -9,7 +9,7 @@
       <tr>
         
         <th class="text-center">Name</th>
-        <th class="text-center">Email</th>
+        <th class="text-center">Username</th>
         <th class="text-center">Division</th>
         <th class="text-center">Role</th>
  
