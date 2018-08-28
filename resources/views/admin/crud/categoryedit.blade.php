@@ -11,7 +11,7 @@
         <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" name="category" value="{{ $ItemCode->category }}">
     </div>
     <input type="submit" class="btn btn-primary">
-    <input type="cancel" class="btn btn-danger" value="cancel">
+    <a href=" {{ URL::previous() }}" > <input type="cancel" class="btn btn-danger" value="cancel"></a>
 </form>
    
 @endsection
