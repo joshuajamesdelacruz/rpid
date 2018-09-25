@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Type of Document</label>
+      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Name of Document</label>
       <div class="col-sm-3">
        <input type="text" class="form-control form-control-lg" name="document" value="{{$crud->document}}">
       </div>
