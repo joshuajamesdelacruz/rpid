@@ -22,8 +22,9 @@ class CrudUserController extends Controller
                 ->Orderby('rname')
                 ->get();
       
-        return view('admin.users.index', compact('user'));
-
+        return view('admin.users.index', compact('user') );
+        
+       
     }
 
 
