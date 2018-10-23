@@ -3,20 +3,20 @@
 
 
   <div class="container">
- 
-  {{--   <a href=" {{url('crud/create')}} " class="btn btn-success offset-md-1">Create</a> --}}
    
 
 <form action="{{ Action( 'CrudController@scopeSearch' ) }}" method="GET" role="search">
 
   <div class="input-group">
-    <input type="text" class="form-control" name="q" placeholder="Search Document"> <span class="input-group-btn">
     
-    <button type="submit" class="btn btn-default">
-      Search
-    </button>
-
+    <input type="text" class="form-control" name="q" placeholder="Search Document"> 
+    
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default">
+        Search
+      </button>
     </span>
+
   </div>
 
 </form>

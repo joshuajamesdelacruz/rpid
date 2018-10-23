@@ -18,7 +18,7 @@ class CrudUserController extends Controller
         $user =  DB::table('users')  
                 ->leftjoin('user_role','users.id','=','user_role.user_id')
                 ->leftjoin('roles','roles.id','=','user_role.role_id')
-                ->select('users.id','users.name as uname' , 'users.email' , 'users.division', 'roles.name as rname')
+                ->select('users.id','users.name as uname' , 'users.username' , 'users.division', 'roles.name as rname')
                 ->Orderby('rname')
                 ->get();
       
@@ -42,7 +42,7 @@ class CrudUserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'username' => 'required',
             'password' => 'required',
             'division' => 'required',
             'role' => 'required'
@@ -52,12 +52,12 @@ class CrudUserController extends Controller
        
         $user = new User();
         $user->name = $request['name'];
-        $user->email = $request['email'];
+        $user->username = $request['username'];
         $user->password =bcrypt($request['password']);
         $user->division = $request['division'];  
         
         //Errors
-        if (User::where('email', '=', $request['email'])->exists()) {
+        if (User::where('username', '=', $request['username'])->exists()) {
            return back()->withErrors("Username already exist");
         }else{
             $user->save();
@@ -90,14 +90,14 @@ class CrudUserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'username' => 'required',
             'division' => 'required',
             'role' => 'required'
          ]);
 
         $user = User::find($id);
         $user->name = $request['name'];
-        $user->email = $request['email'];
+        $user->username = $request['username'];
         $user->division = $request['division']; 
         $user->save();
         $user->roles()->sync( Role::where('name', $request['role'] )->first()  );

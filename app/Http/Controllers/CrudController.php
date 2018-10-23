@@ -37,7 +37,7 @@ class CRUDController extends Controller
   
     public function create()
     {
-         $itemcode = ItemCode::all();
+         $itemcode = ItemCode::all()->sortbyDesc('category');
          return view('admin.crud.create', compact('itemcode') );
 
     }
