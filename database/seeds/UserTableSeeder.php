@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
 
     	$admin = new User();
 	    $admin->name = 'administrator';
-	    $admin->username = 'admin';
+	    $admin->email = 'admin';
 	    $admin->password = bcrypt('admin');
 	    $admin->division = 'test';
 	    $admin->save();
@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
 	    
 	    $employee = new User();
 	    $employee->name = 'Employee Name';
-	    $employee->username = 'employee';
+	    $employee->email = 'employee';
 	    $employee->password = bcrypt('secret');
 	    $employee->division = 'test';
 	    $employee->save();
@@ -32,7 +32,7 @@ class UserTableSeeder extends Seeder
 
 	 	$manager = new User();
 	    $manager->name = 'Manager Name';
-	    $manager->username = 'manager';
+	    $manager->email = 'manager';
 	    $manager->password = bcrypt('secret');
 	    $manager->division = 'test';
 	    $manager->save();

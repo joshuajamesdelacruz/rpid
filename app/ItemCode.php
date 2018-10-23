@@ -15,7 +15,11 @@ class ItemCode extends Model
     {
     $array = $this->toArray();
         
-    return array('id' => $array['id'],'category' => $array['category']);
-    }
+    return array(
+        'id' => $array['id'],
+        'category' => $array['category']
+    );
+    
+}
 
 }

@@ -266,6 +266,26 @@ class CRUDController extends Controller
          
     }
 
+
+    public function query(){
+        $crud = crud::search('document')->get();
+        foreach ($crud as $key => $value) {
+            //this code here
+        }
+    }
+
+    public function add(){
+        $crud = new crud;
+        $crud->setAttribute('name','category');
+        $crud->setAttribute('id','1');
+        $crud->save();
+    }
   
+     public function delete()
+    {
+        // this post should be removed from the index at Algolia right away!
+        $crud = crud::find(1);
+        $crud->delete();
+    }
    
 }

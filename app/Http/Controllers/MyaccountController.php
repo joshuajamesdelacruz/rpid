@@ -20,7 +20,7 @@ class MyaccountController extends Controller
         $users = DB::table('users')  
                 ->leftjoin('user_role','users.id','=','user_role.user_id')
                 ->leftjoin('roles','roles.id','=','user_role.role_id')
-                ->select('users.id','users.name as uname' , 'users.username' , 'users.division', 'roles.name as rname')
+                ->select('users.id','users.name as uname' , 'users.email' , 'users.division', 'roles.name as rname')
                 ->where('users.id', Auth::user()->id )
                 ->Orderby('rname')
                 ->get();
