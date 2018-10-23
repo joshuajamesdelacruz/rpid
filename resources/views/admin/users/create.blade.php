@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Username</label>
+      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">email</label>
       <div class="col-sm-3">
        <input type="text" class="form-control form-control-lg" name="email" >
       </div>
@@ -47,6 +47,7 @@
            
            <select class="form-control form-control-lg" name="division" >
              <option></option>
+             <option>APACC</option>
              <option>ODG</option>
              <option>Faculty</option>
              <option>TDD</option>

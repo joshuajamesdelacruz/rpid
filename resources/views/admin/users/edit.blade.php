@@ -50,7 +50,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">Username</label>
+      <label for="smFormGroupInput" class="col-sm-3 col-form-label col-form-label-lg">email</label>
       <div class="col-sm-3">
        <input readonly="readonly" type="text" class="form-control form-control-lg" name="email" value="{{$user->email}}" >
       </div>

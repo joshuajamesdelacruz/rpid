@@ -10,6 +10,6 @@ class users extends Model
 	 use Searchable;
 
     protected $fillable = [
-        'name', 'username', 'password',
+        'name', 'email', 'password',
     ];
 }

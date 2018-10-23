@@ -5,86 +5,37 @@
 
 <h3>Myaccount</h3>
 
-<<<<<<< HEAD
-change password<br>
-=======
             
-
-<form action="{{ Action( 'CrudUserController@update', Auth::user()->id ) }}" method="POST">
-    {{ csrf_field() }}
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b4cd7f5... update
-=======
->>>>>>> parent of b4cd7f5... update
-=======
->>>>>>> parent of b4cd7f5... update
-
-<form action="{{ Action( 'CrudController@update', $id ) }}" method="POST">
-    {{ csrf_field() }}
-    <div class="col-sm-3">
-<<<<<<< HEAD
-        <label>Old password </label>
-        <input type="password" class="form-control">
+@foreach($users as $key)
    
-        <label>new password </label>
-        <input type="password" class="form-control">
-=======
-        <label>name </label>
-        <input type="text" class="form-control" name="name" >
 
-        <label>Username </label>
-        <input type="text" class="form-control" name="username">
+<form action="{{ Action( 'CrudUserController@update', '$id' ) }}" method="POST">
+  
+
+    <div class="col-sm-3">
+        <label>name </label>
+        <input type="text" class="form-control" name="name" value="{{ $key->uname }}" >
+
+        <label>email </label>
+        <input type="text" class="form-control" name="email" value="{{ $key->email }}" readonly="readonly">
         
         <label>division </label>
-        <input type="text" class="form-control" name="division">
+        <input type="text" class="form-control" name="division" value="{{ $key->division }}" readonly="readonly">
 
         <label>role </label>
-        <input type="text" class="form-control" name="role">
+        <input type="text" class="form-control" name="role" value="{{ $key->rname }}" readonly="readonly">
 
-        <label>Old password </label>
-        <input type="password" class="form-control" name="oldpassword">
-   
-        <label>new password </label>
-        <input type="password" class="form-control" name="newpassword">
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b4cd7f5... update
-=======
->>>>>>> parent of b4cd7f5... update
-=======
->>>>>>> parent of b4cd7f5... update
-    
-        <label>re-type new password </label>
-        <input type="password" class="form-control">
         <br>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-     <input type="submit" value="submit" class="btn btn-danger">
-=======
-=======
->>>>>>> parent of b4cd7f5... update
-        <input type="submit" value="submit" class="btn btn-danger" name="retype">
+        <input type="submit" value="update" class="btn btn-default" name="retype" disabled>
 
->>>>>>> parent of b4cd7f5... update
-    </div>
-</form>
-
-=======
-        <input type="submit" value="submit" class="btn btn-danger" name="retype">
-
-<<<<<<< HEAD
-<<<<<<< HEAD
     </div>
 </form>
 
 
->>>>>>> parent of b4cd7f5... update
-=======
->>>>>>> parent of b4cd7f5... update
-=======
->>>>>>> parent of b4cd7f5... update
+
+@endforeach
+
+
 </div>
 
 @endsection
