@@ -57,16 +57,23 @@ Route::get('crud/search', 'CrudController@scopeSearch');
 		Route::resource('category','ItemCodeController');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 		Route::view('adminhome','admin.crud.adminhome');		
+=======
+		Route::view('myaccount','admin.crud.myaccount');
+>>>>>>> parent of b4cd7f5... update
 =======
 		Route::view('myaccount','admin.crud.myaccount');
 >>>>>>> parent of b4cd7f5... update
 		Route::view('mydocument','admin.crud.mydocument');
 	
 		Route::get('share/{id}','CrudController@share');
+<<<<<<< HEAD
 		
 
+=======
+>>>>>>> parent of b4cd7f5... update
 		Route::post	('share/{id}/done','CrudController@shareupdate');
 	});
 
