@@ -13,6 +13,9 @@ change password<br>
 <form action="{{ Action( 'CrudUserController@update', Auth::user()->id ) }}" method="POST">
     {{ csrf_field() }}
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of b4cd7f5... update
+=======
 >>>>>>> parent of b4cd7f5... update
 =======
 >>>>>>> parent of b4cd7f5... update
@@ -45,6 +48,9 @@ change password<br>
         <label>new password </label>
         <input type="password" class="form-control" name="newpassword">
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of b4cd7f5... update
+=======
 >>>>>>> parent of b4cd7f5... update
 =======
 >>>>>>> parent of b4cd7f5... update
@@ -54,8 +60,11 @@ change password<br>
         <br>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      <input type="submit" value="submit" class="btn btn-danger">
 =======
+=======
+>>>>>>> parent of b4cd7f5... update
         <input type="submit" value="submit" class="btn btn-danger" name="retype">
 
 >>>>>>> parent of b4cd7f5... update
@@ -66,10 +75,13 @@ change password<br>
         <input type="submit" value="submit" class="btn btn-danger" name="retype">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div>
 </form>
 
 
+>>>>>>> parent of b4cd7f5... update
+=======
 >>>>>>> parent of b4cd7f5... update
 =======
 >>>>>>> parent of b4cd7f5... update
