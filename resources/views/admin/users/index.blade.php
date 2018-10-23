@@ -24,7 +24,7 @@
       <tr>
         
         <td>{{ $key->uname }}</td>
-        <td>{{ $key->email }}</td>
+        <td>{{ $key->username }}</td>
         <td>{{ $key->division }}</td>
         <td>{{ $key->rname }} </td>
      

@@ -17,7 +17,7 @@
         <input type="text" class="form-control" name="name" value="{{ $key->uname }}" >
 
         <label>email </label>
-        <input type="text" class="form-control" name="email" value="{{ $key->email }}" readonly="readonly">
+        <input type="text" class="form-control" name="username" value="{{ $key->username }}" readonly="readonly">
         
         <label>division </label>
         <input type="text" class="form-control" name="division" value="{{ $key->division }}" readonly="readonly">
