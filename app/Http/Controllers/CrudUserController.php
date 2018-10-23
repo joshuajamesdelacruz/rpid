@@ -99,8 +99,8 @@ class CrudUserController extends Controller
         $user->username = $request['username'];
         $user->division = $request['division']; 
         $user->save();
+  
         $user->roles()->sync( Role::where('name', $request['role'] )->first()  );
-        
         return redirect('/users'); 
         
     }
