@@ -6,34 +6,36 @@
 <h3>Myaccount</h3>
 
             
-@foreach($users as $key)
-   
 
-<form action="{{ Action( 'CrudUserController@update', '$id' ) }}" method="POST">
-  
+<form action="{{ Action( 'CrudUserController@update', Auth::user()->id ) }}" method="POST">
+    {{ csrf_field() }}
 
     <div class="col-sm-3">
         <label>name </label>
-        <input type="text" class="form-control" name="name" value="{{ $key->uname }}" >
+        <input type="text" class="form-control" name="name" >
 
         <label>Username </label>
-        <input type="text" class="form-control" name="username" value="{{ $key->email }}" readonly="readonly">
+        <input type="text" class="form-control" name="username">
         
         <label>division </label>
-        <input type="text" class="form-control" name="division" value="{{ $key->division }}" readonly="readonly">
+        <input type="text" class="form-control" name="division">
 
         <label>role </label>
-        <input type="text" class="form-control" name="role" value="{{ $key->rname }}" readonly="readonly">
+        <input type="text" class="form-control" name="role">
 
+        <label>Old password </label>
+        <input type="password" class="form-control" name="oldpassword">
+   
+        <label>new password </label>
+        <input type="password" class="form-control" name="newpassword">
+    
+        <label>re-type new password </label>
+        <input type="password" class="form-control">
         <br>
-        <input type="submit" value="update" class="btn btn-default" name="retype" disabled>
+        <input type="submit" value="submit" class="btn btn-danger" name="retype">
 
     </div>
 </form>
-
-
-
-@endforeach
 
 
 </div>
