@@ -13,7 +13,7 @@ class ItemCode extends Model
 
     public function searchableAs(){
         //check on database what are you going to search
-        return 'category';
+        return 'item_codes';
     }
     
 

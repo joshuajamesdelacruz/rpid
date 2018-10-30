@@ -252,7 +252,7 @@ class CRUDController extends Controller
     }
 
 
-     public function SearchAs(request $request){
+     public function SearchAs (request $request){
 
      $cruds = Crud::search($request->q)->get();
      

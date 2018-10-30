@@ -15,6 +15,6 @@ class users extends Model
 
     public function searchableAs(){
         //check on database what are you going to search
-        return 'name';
+        return 'users';
     }
 }

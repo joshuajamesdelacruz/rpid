@@ -63,6 +63,8 @@ Route::get('crud/search', 'CrudController@scopeSearch');
 	
 
 		Route::get('share/{id}','CrudController@share');
+		Route::get('admin.crud.index','CrudController@SearchAs');
+
 
 		Route::post	('share/{id}/done','CrudController@shareupdate');
 	});
