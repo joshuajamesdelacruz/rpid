@@ -177,21 +177,6 @@ class CRUDController extends Controller
     }
 
 
-    public function scopeSearch(Request $request){
-
-     
-
-      $cruds = Crud::search($request->q)
-                  ->where('privacy',0)
-                  ->paginate(50)
-                  ->appends(["only" => "q"]);;
-
-
-      return view( 'admin.crud.index',compact('cruds') );
-    }
-
-
-
     public function share($id){
 
         $share = Crud::find($id);
@@ -267,25 +252,14 @@ class CRUDController extends Controller
     }
 
 
-    public function query(){
-        $crud = crud::search('document')->get();
-        foreach ($crud as $key => $value) {
-            //this code here
-        }
+     public function SearchAs(request $request){
+
+     $cruds = Crud::search($request->q)->get();
+     
+     return view('admin.crud.index', compact('cruds') );
+
     }
 
-    public function add(){
-        $crud = new crud;
-        $crud->setAttribute('name','category');
-        $crud->setAttribute('id','1');
-        $crud->save();
-    }
+
   
-     public function delete()
-    {
-        // this post should be removed from the index at Algolia right away!
-        $crud = crud::find(1);
-        $crud->delete();
-    }
-   
 }

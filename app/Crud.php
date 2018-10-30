@@ -23,13 +23,9 @@ class Crud extends Model
 
      ];
 
-
-      public function toSearchableArray()
-    {
-        $array = $this->toArray();
-
-        // Customize array...
-
-        return $array;
-    }
+    // public function searchableAs(){
+    //     //check on database what are you going to search
+    //     return 'document';
+    // }
+   
 }

@@ -5,7 +5,7 @@
   <div class="container">
    
 
-<form action="{{ Action( 'CrudController@scopeSearch' ) }}" method="GET" role="search">
+<form action="{{ Action( 'CrudController@SearchAs' ) }}" method="GET" role="search">
 
   <div class="input-group">
     

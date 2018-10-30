@@ -12,4 +12,9 @@ class users extends Model
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
+    public function searchableAs(){
+        //check on database what are you going to search
+        return 'name';
+    }
 }
