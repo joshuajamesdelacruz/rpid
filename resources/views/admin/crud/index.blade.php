@@ -5,7 +5,7 @@
   <div class="container">
    
 
-<form action="{{ Action( 'CrudController@SearchAs' ) }}" method="GET" role="search">
+<form action="{{ Action( 'CrudController@scopeSearch' ) }}" method="GET" role="search">
 
   <div class="input-group">
     
@@ -38,26 +38,19 @@
      
 
 
-      @if(count($cruds) > 0 )
-
-       {{ $cruds->render() }}
-      
-      @foreach($cruds as $key)
+      @if(count($cruds) > 0 ) 
+         @foreach($cruds as $key)
   
       <tr>
         
         <td>{{ $key['division'] }}</td>
         <td>{{ $key['document'] }}</td>
         <td>{{ $key['year_release'] }}</td>
-        <td>{{ $key['item_code'] }}</td>
-       
-            
-        
-         <td>
-          <a href="{{ asset('public/storage/'.$key['file']) }}" target="_blank" class="btn btn-info">view</a> </td>
-           
+        <td>{{ $key['item_code'] }}</td>  
+        <td>
+          <a href="{{ asset('public/storage/'.$key['file']) }}" target="_blank" class="btn btn-info">view</a>
         </td>
-        </td>
+  
       </tr>
 
       @endforeach
@@ -77,7 +70,7 @@
 
     </tbody>
   </table>
-
+  
     
  
 

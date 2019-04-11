@@ -252,14 +252,28 @@ class CRUDController extends Controller
     }
 
 
-     public function SearchAs (request $request){
+    //  public function scopeSearch(Request $request){
 
-     $cruds = Crud::search($request->q)->get();
-     
-     return view('admin.crud.index', compact('cruds') );
+    //   $cruds = Crud::search($request->q)
+    //               ->where('privacy',0)
+    //               ->paginate(10)
+    //               ->appends(["only" => "q"]);
+               
 
+
+    //   return view( 'admin.crud.index', compact('cruds') );
+    // }
+
+        public function scopeSearch(Request $request)
+    {
+    	if($request->has('q')){
+    		$cruds = Crud::search($request->get('q'))->get();	
+    	}else{
+    		$cruds = Crud::get();
+    	}
+       return view( 'admin.crud.index', compact('cruds') );
     }
 
-
+    
   
 }

@@ -57,14 +57,10 @@ Route::get('crud/search', 'CrudController@scopeSearch');
 		Route::resource('category','ItemCodeController');
 		Route::resource('myaccount','MyaccountController');
 
-		Route::view('adminhome','admin.crud.adminhome');		
-		
+		Route::view('adminhome','admin.crud.adminhome');				
 		Route::view('mydocument','admin.crud.mydocument');
 	
-
 		Route::get('share/{id}','CrudController@share');
-		Route::get('admin.crud.index','CrudController@SearchAs');
-
 
 		Route::post	('share/{id}/done','CrudController@shareupdate');
 	});

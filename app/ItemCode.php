@@ -11,9 +11,11 @@ class ItemCode extends Model
     protected $fillable = ['category'];
 
 
-    public function searchableAs(){
-        //check on database what are you going to search
-        return 'item_codes';
+    public function toSearchableArray()
+    {
+    $array = $this->toArray();
+        
+    return array('id' => $array['id'],'category' => $array['category']);
     }
     
 

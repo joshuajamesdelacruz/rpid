@@ -59,4 +59,8 @@ class ItemCodeController extends Controller
 
        return redirect('/category');
     }
+
+    public function search(){
+        
+    }
 }

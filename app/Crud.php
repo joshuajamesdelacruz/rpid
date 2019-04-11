@@ -23,9 +23,9 @@ class Crud extends Model
 
      ];
 
-    public function searchableAs(){
-        //check on database what are you going to search
-        return 'cruds';
+      public function searchableAs()
+    {     
+        //table of database
+         return 'Cruds';
     }
-   
 }
